@@ -5,6 +5,7 @@
     "license": "MIT",
     "devDependencies": {
         "@types/node": "^20.11.5",
+        "hardhat": "^2.19.4",
         "prettier": "^3.2.4",
         "ts-node": "^10.9.2",
         "typescript": "^5.3.3"

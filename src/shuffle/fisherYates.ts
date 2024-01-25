@@ -13,17 +13,10 @@ export const fisherYates = (rngFn: RngFunction): Card[] => {
     for (let i = 0; i < MAX_CARDS; i++) {
         if (i === MAX_CARDS - 1) {
             shuffledDeck.push(startingDeck[0]);
-            console.log({
-                lastCard: startingDeck[0],
-            });
             break;
         }
 
         const randomVal = rngFn(MAX_CARDS - i, i);
-        console.log({
-            selectedCard: startingDeck[randomVal],
-            randomVal,
-        });
         shuffledDeck.push(startingDeck[randomVal]);
         const poppedCard = startingDeck.pop();
         // If the last card is not chosen we know the popped card will be defined
