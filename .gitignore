@@ -1,7 +1,6 @@
 yarn.lock
 *DS_Store*
 node_modules
-.env
 coverage
 coverage.json
 typechain
@@ -11,3 +10,5 @@ artifacts
 deployments/*
 !deployments/.gitkeep
 .idea
+.env*
+dist

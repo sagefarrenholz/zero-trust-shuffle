@@ -1,13 +1,46 @@
 {
-    "name": "zero-trust-deck-shuffle",
-    "version": "1.0.0",
-    "main": "index.ts",
+    "name": "zero-trust-shuffle",
+    "version": "0.1.0",
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
     "license": "MIT",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "compile": "hardhat compile",
+        "build": "yarn run compile && tsc",
+        "clean": "hardhat clean",
+        "prepublishOnly": "build",
+        "deploy:mumbai": "hardhat run --network mumbai scripts/deployCheapVRFv2DirectFundingConsumer.ts",
+        "deploy:polygon": "hardhat run --network polygon scripts/deployCheapVRFv2DirectFundingConsumer.ts",
+        "shuffle:mumbai": "hardhat run --network mumbai scripts/shuffle.ts",
+        "shuffle:polygon": "hardhat run --network polygon scripts/shuffle.ts",
+        "estimate": "hardhat run --network mumbai scripts/estimateCallbackGas.ts"
+    },
     "devDependencies": {
-        "@types/node": "^20.11.5",
+        "@chainlink/contracts": "^0.8.0",
+        "@nomicfoundation/hardhat-ethers": "^3.0.5",
+        "@nomicfoundation/hardhat-verify": "^2.0.4",
+        "@typechain/ethers-v6": "^0.5.1",
+        "@typechain/hardhat": "^9.1.0",
+        "@types/chai": "4",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "^20.11.14",
+        "chai": "4",
+        "dotenv": "^16.4.1",
         "hardhat": "^2.19.4",
         "prettier": "^3.2.4",
+        "ts-loader": "^9.5.1",
         "ts-node": "^10.9.2",
+        "typechain": "^8.3.2",
         "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "ethers": "^6.10.0"
+    },
+    "browser": {
+        "crypto": false
     }
 }
