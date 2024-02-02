@@ -4,7 +4,7 @@ import "@nomicfoundation/hardhat-verify";
 
 import { HardhatUserConfig } from "hardhat/types";
 import { config } from "dotenv";
-import { ConfiguredNetwork } from "./src/types";
+import { ConfiguredNetwork } from "./src/types/constants";
 
 const privateKeysFromEnv = (): {
     [network in ConfiguredNetwork]: string | undefined;
@@ -26,7 +26,7 @@ module.exports = <HardhatUserConfig>{
         settings: {
             optimizer: {
                 enabled: true,
-                runs: 2 ** 32 - 1,
+                runs: 1000,
             },
         },
     },
@@ -39,7 +39,7 @@ module.exports = <HardhatUserConfig>{
         polygon: {
             chainId: 137,
             accounts: privateKeys.polygon ? [privateKeys.polygon] : [],
-            url: "https://polygon.llamarpc.com",
+            url: "https:/polygon-rpc.com",
         },
     },
     etherscan: {

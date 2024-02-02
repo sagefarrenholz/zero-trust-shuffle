@@ -1,4 +1,7 @@
-import { ConfiguredNetwork } from "../../src/types";
+export enum ConfiguredNetwork {
+    MUMBAI = "mumbai",
+    POLYGON = "polygon",
+}
 
 type NetworkContracts = {
     LINK_TOKEN: string;

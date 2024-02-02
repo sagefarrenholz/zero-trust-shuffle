@@ -1,7 +1,4 @@
-export enum ConfiguredNetwork {
-    MUMBAI = "mumbai",
-    POLYGON = "polygon",
-}
+import { ConfiguredNetwork } from "./constants";
 
 export type ContractDeploymentAddresses = {
     [network in ConfiguredNetwork]?: string;

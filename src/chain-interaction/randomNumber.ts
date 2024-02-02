@@ -1,12 +1,29 @@
-import { CheapVRFv2DirectFundingConsumer } from "../../typechain-types";
+import {
+    CheapVRFv2DirectFundingConsumer,
+    LinkTokenInterface,
+} from "../../typechain-types";
+
+// Minimum link required for VRF 18 decimals
+const minLinkDec10 = 1_000_000_000_000_000n;
 
 const generateRandomNumber = async (
-    vrfContract: CheapVRFv2DirectFundingConsumer
+    vrfContractAddress: string,
+    linkTokenContract: LinkTokenInterface
 ) => {
-    const tx = await vrfContract.requestRandomWords({
-        gasLimit: 250_000,
-    });
-    return tx;
+    try {
+        const tx = await linkTokenContract.transferAndCall(
+            vrfContractAddress,
+            minLinkDec10,
+            "0x00",
+            {
+                gasLimit: 250_000,
+            }
+        );
+        console.log(await tx.wait());
+        return tx;
+    } catch (e) {
+        console.error(e);
+    }
 };
 
 const retrieveRandomNumber = async (
@@ -30,10 +47,14 @@ const retrieveRandomNumber = async (
 };
 
 export const randomNumber = async (
-    vrfContract: CheapVRFv2DirectFundingConsumer
+    vrfContract: CheapVRFv2DirectFundingConsumer,
+    linkContract: LinkTokenInterface
 ) => {
     return {
-        ...(await generateRandomNumber(vrfContract)),
+        ...(await generateRandomNumber(
+            await vrfContract.getAddress(),
+            linkContract
+        )),
         ...(await retrieveRandomNumber(vrfContract)),
     };
 };

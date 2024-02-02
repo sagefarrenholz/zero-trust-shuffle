@@ -1,9 +1,9 @@
 import fs from "fs/promises";
 import { CheapVRFv2DirectFundingConsumer__factory } from "../typechain-types";
-import { networkContractsAddresses } from "./util/constants";
 import type { ContractDeploymentAddresses } from "../src/types";
 import { ethers, network } from "hardhat";
 import path from "path";
+import { networkContractsAddresses } from "../src/types/constants";
 
 const OUTPUT_FILE = path.join(
     __dirname,

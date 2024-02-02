@@ -10,9 +10,10 @@
     ],
     "scripts": {
         "compile": "hardhat compile",
-        "build": "yarn run compile && tsc",
+        "types:chainlink": "typechain --target ethers-v6 --out-dir typechain-types './node_modules/@chainlink/contracts/abi/v0.8/LinkTokenInterface.json'",
+        "build": "yarn run types:chainlink && yarn run compile --force  && tsc",
         "clean": "hardhat clean",
-        "prepublishOnly": "build",
+        "prepublishOnly": "yarn run build",
         "deploy:mumbai": "hardhat run --network mumbai scripts/deployCheapVRFv2DirectFundingConsumer.ts",
         "deploy:polygon": "hardhat run --network polygon scripts/deployCheapVRFv2DirectFundingConsumer.ts",
         "shuffle:mumbai": "hardhat run --network mumbai scripts/shuffle.ts",

@@ -1,6 +1,6 @@
 import { config, ethers, network } from "hardhat";
-import { zeroTrustShuffle, loadContract } from "../src";
-import { ConfiguredNetwork } from "../src/types";
+import { zeroTrustShuffle, loadContracts } from "../src";
+import { ConfiguredNetwork } from "../src/types/constants";
 
 const main = async () => {
     const test = network.name === ConfiguredNetwork.MUMBAI;
@@ -14,7 +14,7 @@ const main = async () => {
     const provider = new ethers.JsonRpcProvider(currentNetwork.url, undefined);
     const wallet = new ethers.Wallet(privateKey, provider);
 
-    loadContract(wallet, test);
+    loadContracts(wallet, test);
     console.log(await zeroTrustShuffle());
 };
 
