@@ -18,6 +18,7 @@
         "deploy:polygon": "hardhat run --network polygon scripts/deployCheapVRFv2DirectFundingConsumer.ts",
         "shuffle:mumbai": "hardhat run --network mumbai scripts/shuffle.ts",
         "shuffle:polygon": "hardhat run --network polygon scripts/shuffle.ts",
+        "test": "hardhat run  scripts/test.ts",
         "estimate": "hardhat run --network mumbai scripts/estimateCallbackGas.ts"
     },
     "devDependencies": {

@@ -6,24 +6,20 @@ import {
 // Minimum link required for VRF 18 decimals
 const minLinkDec10 = 1_000_000_000_000_000n;
 
+// proofOfOwnership is a signed string that is revealed after the game
 const generateRandomNumber = async (
     vrfContractAddress: string,
-    linkTokenContract: LinkTokenInterface
+    linkTokenContract: LinkTokenInterface,
+    proofOfOwnershipMessage: string
 ) => {
-    try {
-        const tx = await linkTokenContract.transferAndCall(
-            vrfContractAddress,
-            minLinkDec10,
-            "0x00",
-            {
-                gasLimit: 250_000,
-            }
-        );
-        console.log(await tx.wait());
-        return tx;
-    } catch (e) {
-        console.error(e);
-    }
+    return linkTokenContract.transferAndCall(
+        vrfContractAddress,
+        minLinkDec10,
+        proofOfOwnershipMessage,
+        {
+            gasLimit: 300_000,
+        }
+    );
 };
 
 const retrieveRandomNumber = async (
@@ -48,12 +44,14 @@ const retrieveRandomNumber = async (
 
 export const randomNumber = async (
     vrfContract: CheapVRFv2DirectFundingConsumer,
-    linkContract: LinkTokenInterface
+    linkContract: LinkTokenInterface,
+    proofOfOwnershipMessage: string
 ) => {
     return {
         ...(await generateRandomNumber(
             await vrfContract.getAddress(),
-            linkContract
+            linkContract,
+            proofOfOwnershipMessage
         )),
         ...(await retrieveRandomNumber(vrfContract)),
     };

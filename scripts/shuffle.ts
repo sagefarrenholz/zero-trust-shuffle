@@ -12,10 +12,14 @@ const main = async () => {
         throw new Error("Expected rpc url");
     }
     const provider = new ethers.JsonRpcProvider(currentNetwork.url, undefined);
-    const wallet = new ethers.Wallet(privateKey, provider);
+    const signer = new ethers.Wallet(privateKey, provider);
 
-    loadContracts(wallet, test);
-    console.log(await zeroTrustShuffle());
+    console.log(
+        await zeroTrustShuffle({
+            signer,
+            test,
+        })
+    );
 };
 
 // We recommend this pattern to be able to use async/await everywhere

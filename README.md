@@ -1,7 +1,56 @@
-An open source low-trust way to shuffle a deck of cards. Allowing players to
-have certifiable knowledge of fairness of gameplay online.
+An open source zero-trust way to shuffle a deck of cards. Allowing players to
+have certifiable knowledge of fairness for gameplay online.
 
-# Installation
+# Usage
+
+```sh
+npm install zero-trust-shuffle
+```
+
+or with yarn:
+
+```sh
+yarn add zero-trust-shuffle
+```
+
+You'll need to a polygon wallet that can pay for the gas (Each call is around
+250k gas), you'll also need some Link (non-bridged). All in all each call comes
+out a few cents.
+
+In order to acquire non-bridged LINK on polygon you'll need to take your bridged
+LINK here and swap it:
+[PegSwap Bridged Link to Unbridged](https://pegswap.chain.link/)
+
+Once you have your funded wallet, here's how you might use `zero-trust-shuffle`:
+
+```typescript
+import { zeroTrustShuffle } from "zero-trust-shuffle";
+
+const FUNDED_WALLET_PRIVATE_KEY = "0x...";
+
+const exampleUsage = async () => {
+    const { gameStartReveal, gameEndReveal, shuffledDeck } =
+        await zeroTrustShuffle({ privateKey: FUNDED_WALLET_PRIVATE_KEY });
+
+    // On game start reveal non-secret information to clients
+    sendClients(gameStartReveal);
+
+    // Play card based game
+    playPoker(shuffledDeck);
+
+    // On game end reveal game secrets to clients
+    sendClients(gameEndReveal);
+};
+```
+
+Passing your key is only needed in the first call to `zeroTrustShuffle()`. Any
+further calls will reuse that key:
+
+```ts
+// Subsequent deck shuffle
+const { gameStartReveal, gameEndReveal, shuffledDeck } =
+    await zeroTrustShuffle();
+```
 
 # VRF Polygon Contracts
 

@@ -12,7 +12,7 @@ const shuffleDeckFromHashedInputs = (...inputs: string[]) => {
             const hash = hashValueFromElements(...inputs, nonce.toFixed());
             const rngFn: RngFunction = (upper, iter) =>
                 getRngValueFromHash(hash, iter, upper);
-            return fisherYates(rngFn);
+            return { cards: fisherYates(rngFn), nonce };
         } catch (e) {
             nonce++;
         }
