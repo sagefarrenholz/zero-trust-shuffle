@@ -1,3 +1,5 @@
+![tinyCard](https://github.com/sagefarrenholz/zero-trust-shuffle/assets/46610156/1b7fc144-ac99-411d-b223-9e20abb35aa4)
+
 [![npm version](https://badge.fury.io/js/zero-trust-shuffle.svg)](https://badge.fury.io/js/zero-trust-shuffle)
 
 An open source zero-trust way to shuffle a deck of cards. Allowing players to
@@ -8,6 +10,7 @@ have certifiable knowledge of fairness for gameplay online.
 ```sh
 npm install zero-trust-shuffle
 ```
+
 
 or with yarn:
 
