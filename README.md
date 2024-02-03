@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/zero-trust-shuffle.svg)](https://badge.fury.io/js/zero-trust-shuffle)
+
 An open source zero-trust way to shuffle a deck of cards. Allowing players to
 have certifiable knowledge of fairness for gameplay online.
 
